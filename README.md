@@ -30,34 +30,40 @@ You need to install bc and dig. For Ubuntu:
  $ git clone --depth=1 https://github.com/cleanbrowsing/dnsperftest/
  $ cd dnsperftest
  $ bash ./dnstest.sh 
-               test1   test2   test3   test4   test5   test6   test7   test8   test9   test10  Average 
-cloudflare     1 ms    1 ms    1 ms    2 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.10
-google         22 ms   1 ms    4 ms    24 ms   1 ms    19 ms   3 ms    56 ms   21 ms   21 ms     17.20
-quad9          10 ms   19 ms   10 ms   10 ms   10 ms   10 ms   10 ms   10 ms   10 ms   55 ms     15.40
-opendns        39 ms   2 ms    2 ms    20 ms   2 ms    72 ms   2 ms    39 ms   39 ms   3 ms      22.00
-norton         2 ms    2 ms    2 ms    2 ms    1 ms    2 ms    2 ms    1 ms    2 ms    2 ms      1.80
-cleanbrowsing  11 ms   14 ms   11 ms   11 ms   10 ms   10 ms   11 ms   36 ms   11 ms   13 ms     13.80
-yandex         175 ms  209 ms  175 ms  181 ms  188 ms  179 ms  178 ms  179 ms  177 ms  208 ms    184.90
-adguard        200 ms  200 ms  200 ms  199 ms  202 ms  200 ms  202 ms  200 ms  199 ms  248 ms    205.00
-neustar        2 ms    2 ms    2 ms    2 ms    1 ms    2 ms    2 ms    2 ms    2 ms    2 ms      1.90
-comodo         21 ms   22 ms   22 ms   22 ms   22 ms   22 ms   22 ms   21 ms   22 ms   24 ms     22.00
+DNS IP              Provider            test1   test2   test3   test4   test5   test6   test7   test8   test9   test10  Average
+127.0.0.1           127.0.0.1           34 ms   20 ms   20 ms   30 ms   19 ms   108 ms  25 ms   18 ms   20 ms   18 ms     31.20
+1.1.1.1             cloudflare          49 ms   38 ms   38 ms   38 ms   40 ms   38 ms   39 ms   38 ms   39 ms   39 ms     39.60
+4.2.2.1             level3              38 ms   37 ms   38 ms   39 ms   39 ms   39 ms   38 ms   38 ms   39 ms   39 ms     38.40
+8.8.8.8             google              39 ms   39 ms   38 ms   45 ms   40 ms   44 ms   40 ms   40 ms   40 ms   39 ms     40.40
+9.9.9.9             quad9               39 ms   38 ms   59 ms   227 ms  43 ms   80 ms   42 ms   38 ms   350 ms  42 ms     95.80
+80.80.80.80         freenom             157 ms  155 ms  158 ms  156 ms  207 ms  163 ms  155 ms  200 ms  162 ms  212 ms    172.50
+208.67.222.123      opendns             43 ms   39 ms   39 ms   38 ms   38 ms   104 ms  43 ms   38 ms   38 ms   38 ms     45.80
+199.85.126.20       norton              39 ms   39 ms   38 ms   38 ms   38 ms   38 ms   38 ms   38 ms   38 ms   39 ms     38.30
+185.228.168.168     cleanbrowsing       38 ms   53 ms   39 ms   38 ms   40 ms   39 ms   39 ms   38 ms   38 ms   39 ms     40.10
+77.88.8.7           yandex              48 ms   55 ms   57 ms   58 ms   54 ms   54 ms   55 ms   56 ms   54 ms   71 ms     56.20
+176.103.130.132     adguard             101 ms  103 ms  108 ms  119 ms  132 ms  109 ms  163 ms  129 ms  112 ms  105 ms    118.10
+156.154.70.3        neustar             44 ms   38 ms   40 ms   39 ms   37 ms   38 ms   38 ms   38 ms   37 ms   38 ms     38.70
+8.26.56.26          comodo              38 ms   38 ms   39 ms   39 ms   38 ms   38 ms   38 ms   38 ms   37 ms   38 ms     38.10
 ```
 
-To sort with the fastest first, add `sort -k 22 -n` at the end of the command:
+To sort with the fastest first, add `sort -k 23 -n` at the end of the command:
 
 ```
-  $ bash ./dnstest.sh |sort -k 22 -n
-               test1   test2   test3   test4   test5   test6   test7   test8   test9   test10  Average 
-cloudflare     1 ms    1 ms    1 ms    4 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.30
-norton         2 ms    2 ms    2 ms    2 ms    2 ms    2 ms    2 ms    2 ms    2 ms    2 ms      2.00
-neustar        2 ms    2 ms    2 ms    2 ms    1 ms    2 ms    2 ms    2 ms    2 ms    22 ms     3.90
-cleanbrowsing  11 ms   23 ms   11 ms   11 ms   11 ms   11 ms   11 ms   13 ms   12 ms   11 ms     12.50
-google         4 ms    4 ms    3 ms    21 ms   21 ms   61 ms   3 ms    21 ms   21 ms   22 ms     18.10
-opendns        2 ms    2 ms    2 ms    39 ms   2 ms    75 ms   2 ms    21 ms   39 ms   13 ms     19.70
-comodo         22 ms   23 ms   22 ms   22 ms   22 ms   22 ms   22 ms   22 ms   22 ms   23 ms     22.20
-quad9          10 ms   37 ms   10 ms   10 ms   10 ms   145 ms  10 ms   10 ms   10 ms   20 ms     27.20
-yandex         177 ms  216 ms  178 ms  182 ms  186 ms  177 ms  183 ms  174 ms  186 ms  222 ms    188.10
-adguard        199 ms  210 ms  200 ms  201 ms  202 ms  202 ms  199 ms  200 ms  198 ms  201 ms    201.20
+  $ bash ./dnstest.sh |sort -k 23 -n
+DNS IP              Provider            test1   test2   test3   test4   test5   test6   test7   test8   test9   test10  Average
+127.0.0.1           127.0.0.1           24 ms   26 ms   18 ms   30 ms   24 ms   114 ms  19 ms   19 ms   21 ms   21 ms     31.60
+8.8.8.8             google              37 ms   37 ms   37 ms   37 ms   37 ms   36 ms   37 ms   37 ms   38 ms   37 ms     37.00
+156.154.70.3        neustar             37 ms   37 ms   37 ms   37 ms   38 ms   37 ms   37 ms   37 ms   37 ms   37 ms     37.10
+8.26.56.26          comodo              36 ms   37 ms   39 ms   37 ms   37 ms   38 ms   37 ms   37 ms   37 ms   37 ms     37.20
+4.2.2.1             level3              37 ms   37 ms   38 ms   38 ms   37 ms   37 ms   41 ms   36 ms   37 ms   37 ms     37.50
+208.67.222.123      opendns             41 ms   37 ms   37 ms   37 ms   37 ms   37 ms   38 ms   37 ms   40 ms   37 ms     37.80
+1.1.1.1             cloudflare          53 ms   37 ms   38 ms   37 ms   37 ms   37 ms   37 ms   37 ms   37 ms   37 ms     38.70
+185.228.168.168     cleanbrowsing       42 ms   39 ms   37 ms   37 ms   37 ms   37 ms   37 ms   37 ms   37 ms   56 ms     39.60
+77.88.8.7           yandex              55 ms   52 ms   53 ms   56 ms   60 ms   54 ms   52 ms   92 ms   53 ms   85 ms     61.20
+199.85.126.20       norton              38 ms   37 ms   37 ms   37 ms   37 ms   37 ms   41 ms   37 ms   37 ms   500 ms    83.80
+9.9.9.9             quad9               37 ms   133 ms  500 ms  43 ms   37 ms   37 ms   37 ms   98 ms   59 ms   38 ms     101.90
+176.103.130.132     adguard             114 ms  104 ms  111 ms  106 ms  102 ms  108 ms  103 ms  105 ms  103 ms  114 ms    107.00
+80.80.80.80         freenom             160 ms  167 ms  184 ms  161 ms  194 ms  251 ms  188 ms  319 ms  167 ms  220 ms    201.10
 ```
 
 # For Windows users using the Linux subsystem

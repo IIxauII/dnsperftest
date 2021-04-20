@@ -27,8 +27,8 @@ DOMAINS2TEST="www.google.com amazon.com facebook.com www.youtube.com www.reddit.
 
 
 totaldomains=0
-printf "%-20s" ""
-printf "%-20s" ""
+printf "%-20s" "DNS IP"
+printf "%-20s" "Provider"
 for d in $DOMAINS2TEST; do
     totaldomains=$((totaldomains + 1))
     printf "%-8s" "test$totaldomains"
@@ -47,8 +47,8 @@ for p in $NAMESERVERS $PROVIDERS; do
     for d in $DOMAINS2TEST; do
         ttime=$($dig +tries=1 +time=2 +stats @$pip $d |grep "Query time:" | cut -d : -f 2- | cut -d " " -f 2)
         if [ -z "$ttime" ]; then
-	        #let's have time out be 1s = 1000ms
-	        ttime=1000
+	        #let's have time out be 0.5s = 500ms
+	        ttime=500
         elif [ "x$ttime" = "x0" ]; then
 	        ttime=1
 	    fi
@@ -56,7 +56,7 @@ for p in $NAMESERVERS $PROVIDERS; do
         printf "%-8s" "$ttime ms"
         ftime=$((ftime + ttime))
     done
-    avg=`bc -lq <<< "scale=2; $ftime/$totaldomains"`
+    avg=$(bc -lq <<< "scale=2; $ftime/$totaldomains")
 
     echo "  $avg"
 done
