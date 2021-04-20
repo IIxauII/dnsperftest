@@ -27,7 +27,8 @@ DOMAINS2TEST="www.google.com amazon.com facebook.com www.youtube.com www.reddit.
 
 
 totaldomains=0
-printf "%-18s" ""
+printf "%-20s" ""
+printf "%-20s" ""
 for d in $DOMAINS2TEST; do
     totaldomains=$((totaldomains + 1))
     printf "%-8s" "test$totaldomains"
@@ -41,9 +42,10 @@ for p in $NAMESERVERS $PROVIDERS; do
     pname=${p##*#}
     ftime=0
 
-    printf "%-18s" "$pname"
+    printf "%-20s" "$pip"
+    printf "%-20s" "$pname"
     for d in $DOMAINS2TEST; do
-        ttime=`$dig +tries=1 +time=2 +stats @$pip $d |grep "Query time:" | cut -d : -f 2- | cut -d " " -f 2`
+        ttime=$($dig +tries=1 +time=2 +stats @$pip $d |grep "Query time:" | cut -d : -f 2- | cut -d " " -f 2)
         if [ -z "$ttime" ]; then
 	        #let's have time out be 1s = 1000ms
 	        ttime=1000
